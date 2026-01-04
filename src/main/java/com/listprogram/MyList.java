@@ -6,6 +6,11 @@ public class MyList {
     private String name;
     ArrayList<String> items = new ArrayList<>();
 
+    // Apparently? No-arg constructor needed for JSON deserialization ?
+    public MyList(){
+        // Jackson requires a public no-arg constructor
+    }
+
     public MyList(String name) {
         this.name=name;
     }
@@ -13,7 +18,7 @@ public class MyList {
     public void renameList(String newName){
         this.name = newName;
     }
-
+  
     @Override
     public String toString(){
         return this.name;
@@ -37,7 +42,7 @@ public class MyList {
 
     public String moveItem(int index , int destinationIndex){
         String itemToMove = this.items.get(index);
-        final int OFFSET = 1;
+        int OFFSET = 1;
 
         if(destinationIndex > index){
             this.items.add(destinationIndex + OFFSET, itemToMove);

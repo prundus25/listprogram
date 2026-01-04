@@ -9,6 +9,7 @@ public abstract class MainMenu {
     static int index;
     static int destinationIndex;
     static final String ENTERNUMBER = "Enter list number: ";
+    static final String INDEXERROR = "No list found with that number.";
     static String options = "Options: 1 Create list | 2 Consult list | 3 Rename list | 4 Delete list | 5 Move list | 0 Exit App\n";
     static final int OFFSET = 1;
 
@@ -22,32 +23,41 @@ public abstract class MainMenu {
         return manager.createList(elementName);
     }
 
-    public static int consultCommand(){
-        System.out.print(ENTERNUMBER);
-        index = input.nextInt() - OFFSET;
-        return index;
-    }
-
     public static String renameCommand(ListManager manager){
-        System.out.print(ENTERNUMBER);
-        index = input.nextInt() - OFFSET;
+        index = MainMenu.enterIndex(manager);
+        if (index < 0){
+            return INDEXERROR;
+        }
         System.out.print("Enter the new name for the list: ");
         elementNewName = input.nextLine();
         return manager.renameList(index, elementNewName);
     }
 
     public static String removeCommand(ListManager manager){
-        System.out.print(ENTERNUMBER);
-        index = input.nextInt() - OFFSET;
+        index = MainMenu.enterIndex(manager);
+        if (index < 0){
+            return INDEXERROR;
+        }
         return manager.removeList(index);
     }
     
     public static String moveCommand(ListManager manager){
-        System.out.print(ENTERNUMBER);
-        index = input.nextInt() - OFFSET;
+        index = MainMenu.enterIndex(manager);
+        if (index < 0){
+            return INDEXERROR;
+        }
         System.out.print("Enter the destination position for the list: ");
         destinationIndex = input.nextInt() - OFFSET;
+        input.nextLine();
         return manager.moveList(index, destinationIndex);
+    }
+
+    public static int enterIndex(ListManager manager){
+        System.out.print(ENTERNUMBER);
+        index = input.nextInt() - OFFSET;
+        input.nextLine();
+        int nrOfLists = manager.lists.size();
+        return (index >= 0 && index < nrOfLists) ? index : -1;
     }
 }
 

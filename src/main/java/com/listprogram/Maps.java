@@ -8,7 +8,7 @@ public abstract class Maps {
       case 3 -> MainMenu.renameCommand(manager);
       case 4 -> MainMenu.removeCommand(manager);
       case 5 -> MainMenu.moveCommand(manager);
-      default -> "Invalid option";
+      default -> "Invalid option, try again.";
     };
   }
 
@@ -18,7 +18,7 @@ public abstract class Maps {
       case 2 -> ListMenu.renameCommand(manager, listIndex);
       case 3 -> ListMenu.removeCommand(manager, listIndex);
       case 4 -> ListMenu.moveCommand(manager, listIndex);
-      default -> "Invalid option";
+      default -> "Invalid option, try again.";
     };
   }
 }
