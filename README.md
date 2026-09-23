@@ -1,1 +1,1 @@
-FIRST CRUD PROJECT continuation - List Manager with file handling and GUI
+FIRST CRUD PROJECT - List Manager with data persistence. Only console, no GUI.
